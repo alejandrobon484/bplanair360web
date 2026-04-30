@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /.git/
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+Sitemap: https://bplanair360.com/sitemap.xml

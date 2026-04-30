@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO -->
+  <title>BPLANAIR360 - Gestión de Rotaciones Laborales para empleados</title>
+  <meta name="description" content="Gestiona tus rotaciones de trabajo de forma simple. Carga tus horarios desde imágenes con IA en segundos. Diseñado para usuarios de turnos rotativos de tripulantes, operarios, pasaje ingenieros almacenes.">
+  <meta name="keywords" content="rotaciones laborales, horarios operarios tripulantes ingeneieros pasaje almacenes, gestión turnos, tripulación de cabina, rotación 6/3, rotación 4/3, rotación 5/2, app horarios">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="BPLANAIR360 - Gestión de Rotaciones Laborales">
+  <meta property="og:description" content="Carga tus horarios desde imágenes con IA. Simple, rápido, efectivo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bplanair360.com">
+  
+  <!-- Favicon -->
+     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 flex items-center justify-center text-white font-bold text-lg">
+          <img src="images/logo.png">
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-slate-800">BPLAN<span class="text-indigo-600">AIR360</span></h1>
+          <p class="text-xs text-slate-500">Gestión de rotaciones</p>
+        </div>
+      </div>
+      <a 
+        href="https://aroshift.com/dashboard" 
+        class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200"
+      >
+        Abrir App
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto px-4 py-20 text-center">
+    <div class="max-w-3xl mx-auto">
+      <div class="inline-block mb-4 px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold">
+        ✨ Único en el mercado: IA para cargar horarios
+      </div>
+      
+      <h2 class="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+        Gestiona tus rotaciones<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+          en segundos
+        </span>
+      </h2>
+      
+      <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+        Diseñado para usuarios de turnos rotativos.<br/>
+        <strong>Carga 50 horarios en 1 minuto</strong> desde capturas de pantalla.
+      </p>
+	  <!-- inage: -->
+<div class="mt-12 mb-8">
+  <img 
+    src="./images/azafata01.png" 
+    alt="Calendario BPLANAIR360"
+    class="rounded-2xl shadow-2xl shadow-slate-300/50 w-full max-w-3xl mx-auto border border-slate-200"
+  />
+</div>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <a 
+          href="https://aroshift.com/dashboard" 
+          class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all shadow-xl shadow-indigo-200"
+        >
+          🚀 Empezar ahora
+        </a>
+        <a 
+          href="#como-funciona" 
+          class="px-8 py-4 bg-white text-slate-700 rounded-xl font-semibold text-lg hover:shadow-xl transition-all border-2 border-slate-200"
+        >
+          Ver cómo funciona
+        </a>
+      </div>
+      
+      <div class="flex items-center justify-center gap-8 text-sm text-slate-500">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Sin registro
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          100% Efectiva
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Sin instalación
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <div class="text-center mb-16">
+      <h3 class="text-4xl font-bold text-slate-900 mb-4">
+        ¿Por qué BPLANAIR360?
+      </h3>
+      <p class="text-xl text-slate-600">
+        La única app que entiende tus necesidades reales
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Feature 1: IA -->
+      <div class="bg-white rounded-2xl p-8 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-shadow border border-slate-100">
+        <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <h4 class="text-2xl font-bold text-slate-900 mb-4">
+          IA que carga tus horarios
+        </h4>
+        <p class="text-slate-600 leading-relaxed mb-4">
+          Sube capturas de pantalla de tu app de empresa. La IA extrae automáticamente todos los horarios.
+        </p>
+        <div class="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+          ⚡ 97% más rápido
+        </div>
+      </div>
+      
+      <!-- Feature 2: Simple -->
+      <div class="bg-white rounded-2xl p-8 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-shadow border border-slate-100">
+        <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+          </svg>
+        </div>
+        <h4 class="text-2xl font-bold text-slate-900 mb-4">
+          Tan simple que se usa en todo el mundo
+        </h4>
+        <p class="text-slate-600 leading-relaxed mb-4">
+          Planificador diseñado para ayudarte a gestionar tus horarios rápidamente.
+        </p>
+        <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+          ✅ Sin curva de aprendizaje
+        </div>
+      </div>
+      
+      <!-- Feature 3: Flexible -->
+      <div class="bg-white rounded-2xl p-8 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-shadow border border-slate-100">
+        <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+          </svg>
+        </div>
+        <h4 class="text-2xl font-bold text-slate-900 mb-4">
+          Cualquier rotación
+        </h4>
+        <p class="text-slate-600 leading-relaxed mb-4">
+          Crea tu propia rotación personalizada, 6/3, 4/4, 4/3, L-V. Totalmente flexible. Interfaz clara, sin complicaciones.
+        </p>
+        <div class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">
+          🎨 Personalizable
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="como-funciona" class="max-w-6xl mx-auto px-4 py-20 scroll-mt-20">
+    <div class="text-center mb-16">
+      <h3 class="text-4xl font-bold text-slate-900 mb-4">
+        Cómo funciona
+      </h3>
+      <p class="text-xl text-slate-600">
+        3 pasos para tener tu calendario completo
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-12">
+      <!-- Step 1 -->
+      <div class="text-center">
+        <div class="w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+          1
+        </div>
+		
+		<div class="mb-6">
+    <img 
+      src="./images/operario02.jpg" 
+      alt="Crear rotación"
+      class="rounded-xl shadow-lg mx-auto max-w-xs border border-slate-200"
+    />
+  </div>
+		
+        <h4 class="text-xl font-bold text-slate-900 mb-3">
+          Crea tu rotación
+        </h4>
+        <p class="text-slate-600">
+         Diseña tu patrón (6/3, 4/4...), Ponle un nombre y un color, selecciona el primer día de cualquier bloque y ya tienes tu rotación funcionando.
+        </p>
+      </div>
+      
+      <!-- Step 2 -->
+      <div class="text-center">
+        <div class="w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+          2
+        </div>
+		
+		<div class="mb-6">
+    <img 
+      src="./images/operario01.jpg" 
+      alt="Crear rotación"
+      class="rounded-xl shadow-lg mx-auto max-w-xs border border-slate-200"
+    />
+  </div>
+		
+        <h4 class="text-xl font-bold text-slate-900 mb-3">
+          Carga tus capturas
+        </h4>
+        <p class="text-slate-600">
+          Sube hasta 10 capturas de tu app de empresa. La IA extrae todos los horarios automáticamente.
+        </p>
+      </div>
+      
+      <!-- Step 3 -->
+      <div class="text-center">
+        <div class="w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+          3
+        </div>
+		
+		<div class="mb-6">
+    <img 
+      src="./images/operario03.jpg" 
+      alt="Crear rotación"
+      class="rounded-xl shadow-lg mx-auto max-w-xs border border-slate-200"
+    />
+  </div>
+        <h4 class="text-xl font-bold text-slate-900 mb-3">
+          ¡Listo!
+        </h4>
+		
+		
+		
+        <p class="text-slate-600">
+          Tu calendario está completo. Ve tus horas trabajadas, días libres, bajas, y planifica tus vacaciones.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 text-white text-center">
+      <h3 class="text-3xl font-bold mb-12">
+        Ahorra tiempo, gana tranquilidad
+      </h3>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <div class="text-5xl font-bold mb-2">1 min</div>
+          <div class="text-indigo-200">vs 45 minutos manual</div>
+        </div>
+        <div>
+          <div class="text-5xl font-bold mb-2">50+</div>
+          <div class="text-indigo-200">horarios en segundos</div>
+        </div>
+        <div>
+          <div class="text-5xl font-bold mb-2">0€</div>
+          <div class="text-indigo-200">Sin coste el 95% de las funciones</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot preview -->
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <div class="text-center mb-16">
+      <h3 class="text-4xl font-bold text-slate-900 mb-4">
+        Interfaz limpia y profesional
+      </h3>
+      <p class="text-xl text-slate-600">
+        Todo lo que necesitas, ¡está aquí!
+      </p>
+    </div>
+    
+    <div class="bg-white rounded-3xl shadow-2xl p-8 border border-slate-200">
+      <img 
+  src="./images/azafata02.png" 
+  alt="Interfaz BPLANAIR360"
+  class="rounded-2xl w-full"
+/>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="max-w-4xl mx-auto px-4 py-20 text-center">
+    <h3 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+      Empieza a gestionar tus rotaciones ya mismo
+    </h3>
+    <p class="text-xl text-slate-600 mb-8">
+      Sin registro. Sin pagos. Sin complicaciones.
+    </p>
+    <a 
+      href="https://aroshift.com/dashboard" 
+      class="inline-block px-12 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all shadow-xl shadow-indigo-200"
+    >
+      🚀 Abrir BPLANAIR360
+    </a>
+  </section>
+
+ <!-- 
+  FOOTER ACTUALIZADO PARA BPLANAIR360
+  Reemplaza tu footer actual con este código
+-->
+
+<footer class="bg-gray-900 text-gray-300 py-12 mt-auto">
+    <div class="container mx-auto px-4">
+        <!-- Grid del footer -->
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <!-- Columna 1: Información -->
+            <div>
+                <h3 class="text-white text-lg font-bold mb-4">BPLANAIR360</h3>
+                <p class="text-sm mb-4">
+                    Gestión de rotaciones laborales para usuarios de turnos rotativos.
+                </p>
+                <p class="text-sm text-gray-400">
+                    Ya no pierdas tiempo contabilizando tus horas.
+                </p>
+            </div>
+
+            <!-- Columna 2: Producto -->
+            <div>
+                <h4 class="text-white font-semibold mb-4">Producto</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="https://aroshift.com/dashboard" class="hover:text-white transition">
+                            Abrir App
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#funciona" class="hover:text-white transition">
+                            Cómo funciona
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#caracteristicas" class="hover:text-white transition">
+                            Características
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contacto -->
+            <div>
+                <h4 class="text-white font-semibold mb-4">Contacto</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <span class="text-gray-400">¿Preguntas o sugerencias?</span>
+                    </li>
+                    <li>
+                        Escríbenos a:<br>
+                        <a href="mailto:info@bplanair360.com" class="text-blue-400 hover:text-blue-300 transition">
+                            info@bplanair360.com
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Separador -->
+        <div class="border-t border-gray-700 pt-6">
+            <!-- Enlaces legales -->
+            <div class="flex flex-wrap justify-center gap-4 mb-4 text-sm">
+                <a href="aviso-legal.html" class="hover:text-white transition">
+                    Aviso Legal
+                </a>
+                <span class="text-gray-600">|</span>
+                <a href="politica-privacidad.html" class="hover:text-white transition">
+                    Política de Privacidad
+                </a>
+                <span class="text-gray-600">|</span>
+                <a href="politica-cookies.html" class="hover:text-white transition">
+                    Política de Cookies
+                </a>
+                <span class="text-gray-600">|</span>
+                <button onclick="window.reopenCookieBanner()" class="hover:text-white transition cursor-pointer">
+                    Configurar Cookies
+                </button>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-center text-sm text-gray-400">
+                © 2025 BPLANAIR360 · Gestión de rotaciones laborales · Ya no pierdas el tiempo contabilizando tus horas.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Banner de cookies -->
+<script src="js/cookie-banner.js"></script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>Calculadora de Vacaciones</title>  
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />  
+  <style>  
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }  
+  
+    :root {  
+      --bg: #0f1923;  
+      --surface: #162031;  
+      --card: #1c2a3a;  
+      --accent: #f0a500;  
+      --accent2: #e05c2a;  
+      --text: #e8edf2;  
+      --muted: #6b8099;  
+      --border: #243447;  
+      --green: #2ecc71;  
+    }  
+  
+    body {  
+      background: var(--bg);  
+      color: var(--text);  
+      font-family: 'DM Sans', sans-serif;  
+      min-height: 100vh;  
+      padding: 24px 16px 48px;  
+    }  
+  
+    header {  
+      text-align: center;  
+      margin-bottom: 32px;  
+    }  
+  
+    header h1 {  
+      font-family: 'DM Serif Display', serif;  
+      font-size: clamp(1.6rem, 5vw, 2.4rem);  
+      color: var(--accent);  
+      line-height: 1.2;  
+    }  
+  
+    header p {  
+      color: var(--muted);  
+      font-size: 0.9rem;  
+      margin-top: 6px;  
+    }  
+  
+    .container {  
+      max-width: 560px;  
+      margin: 0 auto;  
+    }  
+  
+    /* TABLA DE REFERENCIA */  
+    .ref-toggle {  
+      background: none;  
+      border: 1px solid var(--border);  
+      color: var(--muted);  
+      font-family: 'DM Sans', sans-serif;  
+      font-size: 0.82rem;  
+      padding: 8px 14px;  
+      border-radius: 8px;  
+      cursor: pointer;  
+      display: flex;  
+      align-items: center;  
+      gap: 6px;  
+      margin-bottom: 12px;  
+      transition: border-color 0.2s, color 0.2s;  
+    }  
+    .ref-toggle:hover { border-color: var(--accent); color: var(--accent); }  
+    .ref-toggle .arrow { transition: transform 0.2s; }  
+    .ref-toggle.open .arrow { transform: rotate(90deg); }  
+  
+    .ref-table {  
+      background: var(--card);  
+      border-radius: 12px;  
+      overflow: hidden;  
+      margin-bottom: 20px;  
+      border: 1px solid var(--border);  
+      display: none;  
+    }  
+    .ref-table.visible { display: block; }  
+  
+    .ref-table table {  
+      width: 100%;  
+      border-collapse: collapse;  
+      font-size: 0.84rem;  
+    }  
+    .ref-table th {  
+      background: var(--surface);  
+      padding: 10px 14px;  
+      text-align: left;  
+      color: var(--muted);  
+      font-weight: 500;  
+      font-size: 0.78rem;  
+      text-transform: uppercase;  
+      letter-spacing: 0.04em;  
+    }  
+    .ref-table td {  
+      padding: 9px 14px;  
+      border-top: 1px solid var(--border);  
+    }  
+    .ref-table tr:hover td { background: rgba(255,255,255,0.03); }  
+    .pts-high { color: var(--accent); font-weight: 600; }  
+    .pts-mid { color: #e8a060; }  
+    .pts-low { color: var(--muted); }  
+  
+    /* PERIODOS SELECCIONABLES */  
+    .section-label {  
+      font-size: 0.78rem;  
+      text-transform: uppercase;  
+      letter-spacing: 0.06em;  
+      color: var(--muted);  
+      margin-bottom: 10px;  
+      font-weight: 600;  
+    }  
+  
+    .periods-grid {  
+      display: grid;  
+      grid-template-columns: repeat(2, 1fr);  
+      gap: 8px;  
+      margin-bottom: 24px;  
+    }  
+  
+    .period-btn {  
+      background: var(--card);  
+      border: 1px solid var(--border);  
+      border-radius: 10px;  
+      padding: 12px 10px;  
+      cursor: pointer;  
+      text-align: left;  
+      transition: all 0.15s;  
+      position: relative;  
+      overflow: hidden;  
+    }  
+    .period-btn:hover { border-color: var(--accent); }  
+    .period-btn.selected {  
+      border-color: var(--accent);  
+      background: rgba(240,165,0,0.1);  
+    }  
+    .period-btn .p-name {  
+      font-size: 0.82rem;  
+      color: var(--text);  
+      font-weight: 500;  
+      line-height: 1.3;  
+    }  
+    .period-btn .p-pts {  
+      font-size: 1.1rem;  
+      font-weight: 600;  
+      margin-top: 2px;  
+    }  
+    .period-btn.selected .p-pts { color: var(--accent); }  
+    .period-btn .check {  
+      position: absolute;  
+      top: 8px; right: 8px;  
+      width: 18px; height: 18px;  
+      background: var(--accent);  
+      border-radius: 50%;  
+      display: none;  
+      align-items: center;  
+      justify-content: center;  
+      font-size: 11px;  
+      color: #000;  
+    }  
+    .period-btn.selected .check { display: flex; }  
+  
+    /* DÍAS DISFRUTADOS */  
+    .dias-block {  
+      background: var(--card);  
+      border: 1px solid var(--border);  
+      border-radius: 12px;  
+      padding: 16px;  
+      margin-bottom: 24px;  
+    }  
+    .dias-block label {  
+      font-size: 0.82rem;  
+      color: var(--muted);  
+      display: block;  
+      margin-bottom: 8px;  
+    }  
+    .dias-row {  
+      display: flex;  
+      align-items: center;  
+      gap: 12px;  
+    }  
+    .dias-row input[type=number] {  
+      flex: 1;  
+      background: var(--surface);  
+      border: 1px solid var(--border);  
+      border-radius: 8px;  
+      color: var(--text);  
+      font-family: 'DM Sans', sans-serif;  
+      font-size: 1.1rem;  
+      font-weight: 600;  
+      padding: 10px 14px;  
+      outline: none;  
+      transition: border-color 0.2s;  
+      -moz-appearance: textfield;  
+    }  
+    .dias-row input::-webkit-outer-spin-button,  
+    .dias-row input::-webkit-inner-spin-button { -webkit-appearance: none; }  
+    .dias-row input:focus { border-color: var(--accent); }  
+    .dias-note {  
+      font-size: 0.76rem;  
+      color: var(--muted);  
+      margin-top: 6px;  
+    }  
+  
+    /* RESULTADO */  
+    .result-card {  
+      background: linear-gradient(135deg, #1e3048 0%, #162031 100%);  
+      border: 1px solid var(--accent);  
+      border-radius: 14px;  
+      padding: 20px;  
+      margin-bottom: 20px;  
+    }  
+    .result-label {  
+      font-size: 0.78rem;  
+      text-transform: uppercase;  
+      letter-spacing: 0.07em;  
+      color: var(--muted);  
+      margin-bottom: 4px;  
+    }  
+    .result-value {  
+      font-family: 'DM Serif Display', serif;  
+      font-size: 3rem;  
+      color: var(--accent);  
+      line-height: 1;  
+    }  
+    .result-formula {  
+      font-size: 0.8rem;  
+      color: var(--muted);  
+      margin-top: 8px;  
+    }  
+    .result-formula span { color: var(--text); }  
+  
+    .result-breakdown {  
+      margin-top: 12px;  
+      padding-top: 12px;  
+      border-top: 1px solid var(--border);  
+      font-size: 0.82rem;  
+      color: var(--muted);  
+      display: flex;  
+      flex-direction: column;  
+      gap: 4px;  
+    }  
+    .result-breakdown .line { display: flex; justify-content: space-between; }  
+    .result-breakdown .line span:last-child { color: var(--text); }  
+  
+    /* RESET */  
+    .btn-reset {  
+      width: 100%;  
+      background: none;  
+      border: 1px solid var(--border);  
+      color: var(--muted);  
+      font-family: 'DM Sans', sans-serif;  
+      font-size: 0.9rem;  
+      padding: 12px;  
+      border-radius: 10px;  
+      cursor: pointer;  
+      transition: all 0.2s;  
+    }  
+    .btn-reset:hover { border-color: var(--accent2); color: var(--accent2); }  
+  
+    .no-selection {  
+      color: var(--muted);  
+      font-style: italic;  
+      font-size: 0.88rem;  
+    }  
+  </style>  
+</head>  
+<body>  
+<div class="container">  
+  <header>  
+    <h1>Calculadora de Vacaciones</h1>  
+    <p>Selecciona los períodos y los días disfrutados</p>  
+  </header>  
+  
+  <!-- TABLA DE REFERENCIA -->  
+  <button class="ref-toggle" onclick="toggleRef(this)">  
+    <span class="arrow">▶</span> Ver tabla de puntos por período  
+  </button>  
+  <div class="ref-table" id="refTable">  
+    <table>  
+      <thead>  
+        <tr><th>Período</th><th>Puntos base</th></tr>  
+      </thead>  
+      <tbody id="refBody"></tbody>  
+    </table>  
+  </div>  
+  
+  <!-- PERIODOS -->  
+  <div class="section-label">Períodos de vacaciones</div>  
+  <div class="periods-grid" id="periodsGrid"></div>  
+  
+  <!-- DÍAS -->  
+  <div class="dias-block">  
+    <label for="diasInput">Días de vacaciones disfrutados</label>  
+    <div class="dias-row">  
+      <input type="number" id="diasInput" min="1" max="365" value="24" oninput="calcular()" />  
+      <span style="color:var(--muted);font-size:0.85rem;">de 24 base</span>  
+    </div>  
+    <div class="dias-note">Si tienes 24 días anuales, deja el valor en 24 (sin ajuste de fórmula).</div>  
+  </div>  
+  
+  <!-- RESULTADO -->  
+  <div class="result-card" id="resultCard">  
+    <div class="result-label">Puntuación total</div>  
+    <div class="result-value" id="resultValue">—</div>  
+    <div class="result-formula" id="resultFormula"></div>  
+    <div class="result-breakdown" id="resultBreakdown"></div>  
+  </div>  
+  
+  <button class="btn-reset" onclick="resetTodo()">↺ Reiniciar selección</button>  
+</div>  
+  
+<script>  
+  const PERIODS = [  
+    { id: "ene_1_7",   name: "Enero 1–7",         pts: 8 },  
+    { id: "ene_rest",  name: "Resto enero",        pts: 0 },  
+    { id: "feb",       name: "Febrero",            pts: 0 },  
+    { id: "mar",       name: "Marzo",              pts: 2 },  
+    { id: "abr",       name: "Abril",              pts: 4 },  
+    { id: "abr_ss",    name: "Abril (Semana Santa)", pts: 4, bonus: true },  
+    { id: "may",       name: "Mayo",               pts: 5 },  
+    { id: "jun",       name: "Junio",              pts: 7 },  
+    { id: "jul",       name: "Julio",              pts: 9 },  
+    { id: "ago",       name: "Agosto",             pts: 10 },  
+    { id: "sep_1_15",  name: "Sep. 1–15",          pts: 8 },  
+    { id: "sep_16_30", name: "Sep. 16–30",         pts: 7 },  
+    { id: "oct",       name: "Octubre",            pts: 0 },  
+    { id: "nov",       name: "Noviembre",          pts: 0 },  
+    { id: "dic_1_15",  name: "Dic. 1–15",          pts: 3 },  
+    { id: "dic_16_31", name: "Dic. 16–31",         pts: 8 },  
+  ];  
+  
+  const selected = new Set();  
+  
+  function ptsClass(p) {  
+    if (p >= 8) return 'pts-high';  
+    if (p >= 4) return 'pts-mid';  
+    return 'pts-low';  
+  }  
+  
+  // Render tabla referencia  
+  const refBody = document.getElementById('refBody');  
+  PERIODS.forEach(p => {  
+    const tr = document.createElement('tr');  
+    const label = p.bonus ? `${p.name} <em style="color:var(--muted);font-size:0.75rem">(+4 extra)</em>` : p.name;  
+    tr.innerHTML = `<td>${label}</td><td class="${ptsClass(p.pts)}">${p.pts} pts${p.bonus ? ' (+4)' : ''}</td>`;  
+    refBody.appendChild(tr);  
+  });  
+  
+  // Render botones de períodos  
+  const grid = document.getElementById('periodsGrid');  
+  PERIODS.forEach(p => {  
+    const btn = document.createElement('button');  
+    btn.className = 'period-btn';  
+    btn.id = 'btn_' + p.id;  
+    const ptsDisplay = p.bonus ? `+4 pts` : `${p.pts} pts`;  
+    btn.innerHTML = `  
+      <div class="check">✓</div>  
+      <div class="p-name">${p.name}</div>  
+      <div class="p-pts ${ptsClass(p.pts)}">${ptsDisplay}</div>  
+    `;  
+    btn.onclick = () => togglePeriod(p.id, btn);  
+    grid.appendChild(btn);  
+  });  
+  
+  function togglePeriod(id, btn) {  
+    if (selected.has(id)) {  
+      selected.delete(id);  
+      btn.classList.remove('selected');  
+    } else {  
+      selected.add(id);  
+      btn.classList.add('selected');  
+    }  
+    calcular();  
+  }  
+  
+  function calcular() {  
+    const dias = parseFloat(document.getElementById('diasInput').value) || 24;  
+    const rv = document.getElementById('resultValue');  
+    const rf = document.getElementById('resultFormula');  
+    const rb = document.getElementById('resultBreakdown');  
+  
+    if (selected.size === 0) {  
+      rv.textContent = '—';  
+      rf.textContent = '';  
+      rb.innerHTML = '<span class="no-selection">Selecciona al menos un período</span>';  
+      return;  
+    }  
+  
+    // Suma puntos base (Semana Santa es +4 sobre Abril normal, pero es un período independiente aquí)  
+    let totalBase = 0;  
+    const lines = [];  
+    selected.forEach(id => {  
+      const p = PERIODS.find(x => x.id === id);  
+      if (p) {  
+        totalBase += p.pts;  
+        lines.push({ name: p.name, pts: p.pts });  
+      }  
+    });  
+  
+    // Fórmula: Puntos × (24 / días_disfrutados)  
+    const factor = 24 / dias;  
+    const total = totalBase * factor;  
+    const totalRound = Math.round(total * 100) / 100;  
+  
+    rv.textContent = totalRound % 1 === 0 ? totalRound : totalRound.toFixed(2);  
+  
+    if (dias === 24) {  
+      rf.innerHTML = `Fórmula: <span>${totalBase} pts × (24 ÷ 24) = ${totalRound}</span>`;  
+    } else {  
+      rf.innerHTML = `Fórmula: <span>${totalBase} × (24 ÷ ${dias}) = ${totalRound}</span>`;  
+    }  
+  
+    rb.innerHTML = lines.map(l =>  
+      `<div class="line"><span>${l.name}</span><span>${l.pts} pts</span></div>`  
+    ).join('') + (lines.length > 1 ? `<div class="line" style="padding-top:6px;border-top:1px solid var(--border);margin-top:4px"><span>Subtotal base</span><span>${totalBase} pts</span></div>` : '');  
+  }  
+  
+  function toggleRef(btn) {  
+    btn.classList.toggle('open');  
+    document.getElementById('refTable').classList.toggle('visible');  
+  }  
+  
+  function resetTodo() {  
+    selected.clear();  
+    document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('selected'));  
+    document.getElementById('diasInput').value = 24;  
+    calcular();  
+  }  
+  
+  calcular();  
+</script>  
+</body>  
+</html>  
